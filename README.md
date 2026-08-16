@@ -9,6 +9,7 @@ Works with **Claude Code, Codex, opencode, Cursor, Hermes** and any other MCP cl
 ![MCP](https://img.shields.io/badge/MCP-server-8B5CF6?logo=modelcontextprotocol&logoColor=white)
 ![Node](https://img.shields.io/badge/Node.js-18+-43853d?logo=node.js&logoColor=white)
 ![Playwright](https://img.shields.io/badge/Playwright-browser-45ba4b?logo=playwright&logoColor=white)
+[![Docs](https://img.shields.io/badge/docs-tobralla.github.io-8B5CF6?logo=githubpages&logoColor=white)](https://tobralla.github.io/minehut-mcp/)
 
 </div>
 
@@ -26,6 +27,8 @@ Two complementary layers, one install:
 Plus `minehut_help` for an in-server guide.
 
 ## 🚀 Install
+
+Full documentation: **[https://tobralla.github.io/minehut-mcp/](https://tobralla.github.io/minehut-mcp/)**
 
 One-time setup on your machine:
 
