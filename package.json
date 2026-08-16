@@ -1,0 +1,47 @@
+{
+  "name": "minehut-mcp",
+  "version": "1.0.0",
+  "description": "MCP server for Minehut. Let any AI agent manage your Minehut Minecraft server via browser automation and the Minehut API.",
+  "license": "MIT",
+  "type": "module",
+  "bin": {
+    "minehut-mcp": "./dist/index.js",
+    "minehut-mcp-setup": "./dist/setup-cli.js"
+  },
+  "files": [
+    "dist"
+  ],
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "prepare": "tsc -p tsconfig.json",
+    "dev": "tsx src/index.ts",
+    "start": "node dist/index.js",
+    "setup": "node dist/setup-cli.js",
+    "smoke": "node scripts/smoke.mjs",
+    "prepublishOnly": "npm run build"
+  },
+  "keywords": [
+    "mcp",
+    "minehut",
+    "minecraft",
+    "model-context-protocol",
+    "claude",
+    "codex",
+    "opencode",
+    "cursor",
+    "hermes"
+  ],
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.30.0",
+    "playwright": "^1.62.1",
+    "zod": "^4.4.3"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "tsx": "^4.19.0",
+    "typescript": "^5.7.0"
+  }
+}
