@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>FAQ | Minehut MCP</title>
+  <link rel="stylesheet" href="./assets/style.css">
+</head>
+<body>
+  <aside class="sidebar">
+    <a class="logo" href="./index.html"><span>⛏️</span> Minehut MCP</a>
+    <div class="tagline">AI control for your Minehut server</div>
+    <nav>
+      <a href="./index.html">Home</a>
+      <a href="./installation.html">Installation</a>
+      <a href="./clients.html">Client setup</a>
+      <a href="./tools.html">Tools</a>
+      <a href="./authentication.html">Authentication</a>
+      <a href="./safety.html">Safety</a>
+      <a href="./faq.html" class="active">FAQ</a>
+    </nav>
+    <div class="ext">
+      <a href="https://github.com/Tobralla/minehut-mcp">GitHub repository ↗</a>
+    </div>
+  </aside>
+
+  <main class="main">
+    <h1>FAQ</h1>
+
+    <h3>Which AI tools work with this?</h3>
+    <p>Anything that speaks the stdio MCP protocol. Claude Code, Codex, opencode, Cursor and Hermes
+    are documented on the <a href="./clients.html">client setup</a> page. Any other MCP client works
+    with the same two-line config.</p>
+
+    <h3>Does the browser really need to log in?</h3>
+    <p>Yes for the first session. The Minehut dashboard is behind Cloudflare and its API session
+    system changes frequently. A real browser login solves the challenges for you and captures the
+    session automatically. After that, the fast API tools work directly.</p>
+
+    <h3>Where does it store my credentials?</h3>
+    <p>Only the session token is stored, in <code>~/.minehut-mcp/session.json</code> with file
+    permissions 600. Email and password are used in memory for the browser login and are never
+    written to disk, unless you put them in environment variables yourself.</p>
+
+    <h3>The browser opens but nothing gets typed.</h3>
+    <p>Cloudflare may show a challenge before the login form exists. Use
+    <code>browser_wait_manual</code> and solve the challenge in the visible window. Set
+    <code>MINEHUT_HEADLESS=0</code> so the window is visible while you work it out.</p>
+
+    <h3>API tools say the session was rejected.</h3>
+    <p>The session expired. Run <code>browser_login_panel</code> again. The stored browser profile
+    usually makes the second login a single click.</p>
+
+    <h3>Can the AI read the dashboard visually?</h3>
+    <p>Yes. <code>browser_screenshot</code> returns a screenshot as an image the AI can actually
+    look at, plus a PNG file saved under <code>~/.minehut-mcp/</code>.</p>
+
+    <h3>Can the AI install plugins?</h3>
+    <p>Through the browser layer, yes: open the plugin page, click, and confirm like a human would.
+    Bulk plugin installs from the console are a Minehut feature, not a limitation of this server.</p>
+
+    <h3>What happens to my server when the MCP server stops?</h3>
+    <p>Nothing. The MCP server only sends actions when the AI calls a tool. Your Minehut server
+    keeps running on its own. <code>browser_close</code> only closes the local browser window.</p>
+
+    <h3>Is this allowed by Minehut?</h3>
+    <p>The server uses the same public login flow and dashboard a human uses, through its own API
+    endpoints. It does not bypass anything. Review the Minehut terms of service and use it on your
+    own account only.</p>
+
+    <h3>Can I use it with multiple Minehut accounts?</h3>
+    <p>Not in one running instance. One instance owns one session file. Start a second MCP server
+    with <code>HOME</code> pointed at a different directory, or swap environment variables between
+    sessions.</p>
+
+    <h3>Do I need to pay for anything?</h3>
+    <p>No. The server is MIT licensed and the runtime is plain Node.js with a free Chromium
+    download via <code>minehut-mcp-setup</code>.</p>
+
+    <footer>
+      <a href="./safety.html">← Safety</a> · <a href="./index.html">Home</a>
+    </footer>
+  </main>
+</body>
+</html>

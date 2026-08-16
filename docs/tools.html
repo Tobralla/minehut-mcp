@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Tools | Minehut MCP</title>
+  <link rel="stylesheet" href="./assets/style.css">
+</head>
+<body>
+  <aside class="sidebar">
+    <a class="logo" href="./index.html"><span>⛏️</span> Minehut MCP</a>
+    <div class="tagline">AI control for your Minehut server</div>
+    <nav>
+      <a href="./index.html">Home</a>
+      <a href="./installation.html">Installation</a>
+      <a href="./clients.html">Client setup</a>
+      <a href="./tools.html" class="active">Tools</a>
+      <a href="./authentication.html">Authentication</a>
+      <a href="./safety.html">Safety</a>
+      <a href="./faq.html">FAQ</a>
+    </nav>
+    <div class="ext">
+      <a href="https://github.com/Tobralla/minehut-mcp">GitHub repository ↗</a>
+    </div>
+  </aside>
+
+  <main class="main">
+    <h1>Tool reference</h1>
+    <p>19 tools in total. The API layer needs a captured session (see
+    <a href="./authentication.html">authentication</a>), the browser layer needs Chromium
+    (<code>minehut-mcp-setup</code>).</p>
+
+    <h2>⚡ API tools</h2>
+    <table>
+      <tr><th>Tool</th><th>Arguments</th><th>Description</th></tr>
+      <tr>
+        <td><code>minehut_status</code></td>
+        <td><code>server</code></td>
+        <td>Status, player count, RAM, MOTD, version and plugin list for a server. Accepts name or id.</td>
+      </tr>
+      <tr>
+        <td><code>minehut_servers</code></td>
+        <td>none</td>
+        <td>Lists every server on the logged-in account with live status.</td>
+      </tr>
+      <tr>
+        <td><code>minehut_start</code></td>
+        <td><code>server</code></td>
+        <td>Powers on the server service.</td>
+      </tr>
+      <tr>
+        <td><code>minehut_stop</code></td>
+        <td><code>server</code></td>
+        <td>Saves and powers off the server.</td>
+      </tr>
+      <tr>
+        <td><code>minehut_restart</code></td>
+        <td><code>server</code></td>
+        <td>Stops, waits briefly, then starts again.</td>
+      </tr>
+      <tr>
+        <td><code>minehut_command</code></td>
+        <td><code>server</code>, <code>command</code></td>
+        <td>Sends a console command with operator privileges, e.g. <code>say hello</code>, <code>give Inxx diamond 64</code>, <code>time set day</code>.</td>
+      </tr>
+      <tr>
+        <td><code>minehut_logs</code></td>
+        <td><code>server</code>, <code>lines</code></td>
+        <td>Returns the most recent console output, capped at 500 lines.</td>
+      </tr>
+      <tr>
+        <td><code>minehut_upgrade_ram</code></td>
+        <td><code>server</code>, <code>ram</code></td>
+        <td>Changes the RAM allocation in GB. The server may restart. Plan limits apply.</td>
+      </tr>
+    </table>
+
+    <h2>🖥️ Browser tools</h2>
+    <table>
+      <tr><th>Tool</th><th>Arguments</th><th>Description</th></tr>
+      <tr>
+        <td><code>browser_open</code></td>
+        <td><code>url</code></td>
+        <td>Opens a page in the controlled browser and returns the title, current URL and first part of the visible text so the AI can understand the page.</td>
+      </tr>
+      <tr>
+        <td><code>browser_login_panel</code></td>
+        <td><code>email</code>, <code>password</code></td>
+        <td>Logs into the dashboard in the browser and captures the API session automatically. Falls back to <code>MINEHUT_EMAIL</code> / <code>MINEHUT_PASSWORD</code> when arguments are missing.</td>
+      </tr>
+      <tr>
+        <td><code>browser_wait_manual</code></td>
+        <td><code>seconds</code></td>
+        <td>Waits while a human finishes a Cloudflare challenge, 2FA or password manager in the visible browser, then captures the session.</td>
+      </tr>
+      <tr>
+        <td><code>browser_click</code></td>
+        <td><code>selector</code></td>
+        <td>Clicks the first visible element matching a CSS selector.</td>
+      </tr>
+      <tr>
+        <td><code>browser_type</code></td>
+        <td><code>selector</code>, <code>text</code>, <code>press_enter</code></td>
+        <td>Types text into an element, optionally pressing Enter afterwards.</td>
+      </tr>
+      <tr>
+        <td><code>browser_press</code></td>
+        <td><code>key</code></td>
+        <td>Sends a keyboard key such as Enter, Escape, Tab or F5.</td>
+      </tr>
+      <tr>
+        <td><code>browser_text</code></td>
+        <td><code>selector</code>, <code>max_chars</code></td>
+        <td>Reads visible text of an element, or the whole page when no selector is given.</td>
+      </tr>
+      <tr>
+        <td><code>browser_screenshot</code></td>
+        <td><code>selector</code>, <code>full_page</code></td>
+        <td>Takes a screenshot of the page or one element and returns it as an image the AI can see, plus the file path.</td>
+      </tr>
+      <tr>
+        <td><code>browser_evaluate</code></td>
+        <td><code>js</code></td>
+        <td>Runs a JavaScript expression in the dashboard page and returns the result. Useful for React state, advanced clicks or custom automation.</td>
+      </tr>
+      <tr>
+        <td><code>browser_close</code></td>
+        <td>none</td>
+        <td>Closes the browser and releases resources.</td>
+      </tr>
+    </table>
+
+    <h2>🧭 Guidance tool</h2>
+    <table>
+      <tr><th>Tool</th><th>Description</th></tr>
+      <tr>
+        <td><code>minehut_help</code></td>
+        <td>Returns an in-server guide with the recommended first-time flow and a hint about the current browser mode.</td>
+      </tr>
+    </table>
+
+    <div class="callout warn">
+      <strong>Server names vs ids.</strong> All <code>minehut_*</code> tools accept either the server
+      name or its 24-character id. Names are looked up with <code>?byName=true</code>; exact
+      24-character values are treated as ids.
+    </div>
+
+    <footer>
+      <a href="./clients.html">← Client setup</a> · <a href="./authentication.html">Authentication →</a>
+    </footer>
+  </main>
+</body>
+</html>

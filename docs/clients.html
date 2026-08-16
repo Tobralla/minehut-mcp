@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Client setup | Minehut MCP</title>
+  <link rel="stylesheet" href="./assets/style.css">
+</head>
+<body>
+  <aside class="sidebar">
+    <a class="logo" href="./index.html"><span>⛏️</span> Minehut MCP</a>
+    <div class="tagline">AI control for your Minehut server</div>
+    <nav>
+      <a href="./index.html">Home</a>
+      <a href="./installation.html">Installation</a>
+      <a href="./clients.html" class="active">Client setup</a>
+      <a href="./tools.html">Tools</a>
+      <a href="./authentication.html">Authentication</a>
+      <a href="./safety.html">Safety</a>
+      <a href="./faq.html">FAQ</a>
+    </nav>
+    <div class="ext">
+      <a href="https://github.com/Tobralla/minehut-mcp">GitHub repository ↗</a>
+    </div>
+  </aside>
+
+  <main class="main">
+    <h1>Client setup</h1>
+    <p>Register the server with your AI tool of choice. Every config below launches the same
+    <code>npx -y github:Tobralla/minehut-mcp</code> binary.</p>
+
+    <h2>Claude Code</h2>
+    <pre><code>claude mcp add minehut-mcp \
+  --env MINEHUT_EMAIL=you@example.com \
+  --env MINEHUT_PASSWORD='your password' \
+  -- npx -y github:Tobralla/minehut-mcp</code></pre>
+
+    <h2>Codex (OpenAI)</h2>
+    <pre><code>codex mcp add minehut-mcp \
+  --env MINEHUT_EMAIL=you@example.com \
+  --env MINEHUT_PASSWORD='your password' \
+  -- npx -y github:Tobralla/minehut-mcp</code></pre>
+
+    <h2>opencode</h2>
+    <p>Add to <code>opencode.json</code> in your project, or to
+    <code>~/.config/opencode/opencode.json</code> to make it available everywhere:</p>
+    <pre><code>{
+  "mcp": {
+    "minehut": {
+      "type": "local",
+      "command": ["npx", "-y", "github:Tobralla/minehut-mcp"],
+      "enabled": true,
+      "environment": {
+        "MINEHUT_EMAIL": "you@example.com",
+        "MINEHUT_PASSWORD": "your password"
+      }
+    }
+  }
+}</code></pre>
+
+    <h2>Cursor</h2>
+    <p>Create <code>.cursor/mcp.json</code> in your project, or use Settings → MCP:</p>
+    <pre><code>{
+  "mcpServers": {
+    "minehut": {
+      "command": "npx",
+      "args": ["-y", "github:Tobralla/minehut-mcp"],
+      "env": {
+        "MINEHUT_EMAIL": "you@example.com",
+        "MINEHUT_PASSWORD": "your password"
+      }
+    }
+  }
+}</code></pre>
+
+    <h2>Hermes</h2>
+    <p>Add to <code>hermes.toml</code> (or <code>config.toml</code>):</p>
+    <pre><code>[mcp.servers.minehut]
+command = "npx"
+args = ["-y", "github:Tobralla/minehut-mcp"]
+env = { MINEHUT_EMAIL = "you@example.com", MINEHUT_PASSWORD = "your password" }</code></pre>
+
+    <div class="callout ok">
+      <strong>No credentials needed to start.</strong> Every config works without the environment
+      variables. Call <code>browser_login_panel</code> after startup and pass the credentials
+      directly in the conversation. The session is then captured and stored locally.
+    </div>
+
+    <h2>Other MCP clients</h2>
+    <p>Any client that supports stdio MCP servers works. Point it at:</p>
+    <pre><code>command: "npx"
+args: ["-y", "github:Tobralla/minehut-mcp"]</code></pre>
+    <p>For clients that need a <em>local</em> package, use the global install from the
+    <a href="./installation.html">installation guide</a> and set <code>command</code> to
+    <code>minehut-mcp</code>.</p>
+
+    <footer>
+      <a href="./installation.html">← Installation</a> · <a href="./tools.html">Tools →</a>
+    </footer>
+  </main>
+</body>
+</html>

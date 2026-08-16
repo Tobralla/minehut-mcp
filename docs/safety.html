@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Safety | Minehut MCP</title>
+  <link rel="stylesheet" href="./assets/style.css">
+</head>
+<body>
+  <aside class="sidebar">
+    <a class="logo" href="./index.html"><span>⛏️</span> Minehut MCP</a>
+    <div class="tagline">AI control for your Minehut server</div>
+    <nav>
+      <a href="./index.html">Home</a>
+      <a href="./installation.html">Installation</a>
+      <a href="./clients.html">Client setup</a>
+      <a href="./tools.html">Tools</a>
+      <a href="./authentication.html">Authentication</a>
+      <a href="./safety.html" class="active">Safety</a>
+      <a href="./faq.html">FAQ</a>
+    </nav>
+    <div class="ext">
+      <a href="https://github.com/Tobralla/minehut-mcp">GitHub repository ↗</a>
+    </div>
+  </aside>
+
+  <main class="main">
+    <h1>Safety</h1>
+
+    <h2>What the AI can do</h2>
+    <p>The session stored by this server grants full control of your Minehut account. The AI can
+    start and stop servers, send console commands with operator privileges, change RAM, read logs
+    and click through the dashboard including billing and plugin settings.</p>
+
+    <h2>Built-in limits</h2>
+    <ul>
+      <li>Destructive actions are not automated by default. There is no tool for server reset or account deletion.</li>
+      <li>Console commands only go through <code>minehut_command</code>, which the AI has to call explicitly with the exact command string.</li>
+      <li>The stored session file is created with permissions 600.</li>
+      <li>Login and close tools exist on purpose: you can shut the whole thing down with <code>browser_close</code>.</li>
+    </ul>
+
+    <h2>Recommended practices</h2>
+    <ol>
+      <li>Review what you ask the AI to run. A misphrased command like <code>give @e diamond 100000*10000</code> is exactly as damaging as typing it yourself.</li>
+      <li>Run the server only on machines you trust. It stores real credentials in your home directory.</li>
+      <li>Rotate your Minehut password and re-login after any machine compromise.</li>
+      <li>Do not paste credentials, tokens or session files into support chats or issue trackers.</li>
+      <li>Turn off the MCP server when you are done for the day. Most clients allow per-project enable and disable.</li>
+    </ol>
+
+    <div class="callout danger">
+      <strong>Operator privileges.</strong> Every console command sent through
+      <code>minehut_command</code> runs as the server operator. There is no sandbox between the AI
+      and your server, by design. The AI is a capable assistant with write access, not a read-only
+      viewer.
+    </div>
+
+    <h2>Account-level precautions</h2>
+    <p>Consider a dedicated Minehut account with fewer privileges, or at least a strong unique
+    password, for any long-running automation setup. The server works with any account, so slotting
+    in a throwaway account costs nothing.</p>
+
+    <footer>
+      <a href="./authentication.html">← Authentication</a> · <a href="./faq.html">FAQ →</a>
+    </footer>
+  </main>
+</body>
+</html>

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Installation | Minehut MCP</title>
+  <link rel="stylesheet" href="./assets/style.css">
+</head>
+<body>
+  <aside class="sidebar">
+    <a class="logo" href="./index.html"><span>⛏️</span> Minehut MCP</a>
+    <div class="tagline">AI control for your Minehut server</div>
+    <nav>
+      <a href="./index.html">Home</a>
+      <a href="./installation.html" class="active">Installation</a>
+      <a href="./clients.html">Client setup</a>
+      <a href="./tools.html">Tools</a>
+      <a href="./authentication.html">Authentication</a>
+      <a href="./safety.html">Safety</a>
+      <a href="./faq.html">FAQ</a>
+    </nav>
+    <div class="ext">
+      <a href="https://github.com/Tobralla/minehut-mcp">GitHub repository ↗</a>
+    </div>
+  </aside>
+
+  <main class="main">
+    <h1>Installation</h1>
+
+    <h2>Requirements</h2>
+    <ul>
+      <li>Node.js 18 or newer</li>
+      <li>A Minehut account with a server</li>
+    </ul>
+
+    <h2>One-time setup</h2>
+    <p>Install the server globally, then install Chromium for the browser layer:</p>
+    <pre><code># 1. Install globally
+npm install -g github:Tobralla/minehut-mcp
+
+# 2. Install Chromium
+minehut-mcp-setup</code></pre>
+
+    <div class="callout ok">
+      <strong>Works on any system.</strong> The package is plain Node.js plus Playwright. No native
+      compilation, no platform-specific binaries.
+    </div>
+
+    <h2>Environment variables</h2>
+    <table>
+      <tr>
+        <th>Variable</th>
+        <th>Purpose</th>
+      </tr>
+      <tr>
+        <td><code>MINEHUT_EMAIL</code> / <code>MINEHUT_PASSWORD</code></td>
+        <td>Used by <code>browser_login_panel</code> when credentials are not passed per call</td>
+      </tr>
+      <tr>
+        <td><code>MINEHUT_TOKEN</code> / <code>MINEHUT_SESSION_ID</code></td>
+        <td>Direct API session, captured automatically after browser login</td>
+      </tr>
+      <tr>
+        <td><code>MINEHUT_HEADLESS=0</code></td>
+        <td>Run the browser visibly. Recommended for the first login since Cloudflare is friendlier with a visible window</td>
+      </tr>
+    </table>
+
+    <h2>Running from source</h2>
+    <pre><code>git clone https://github.com/Tobralla/minehut-mcp.git
+cd minehut-mcp
+npm install
+npm run dev</code></pre>
+
+    <p>Build the production bundle with <code>npm run build</code> and start it with <code>npm start</code>.</p>
+
+    <h2>Verify the install</h2>
+    <p>Run the server on its own and ask your client to call <code>minehut_help</code>. It returns a
+    short guide plus the current browser mode. A plain <code>minehut_status</code> call before
+    logging in returns a clear message instead of a crash.</p>
+
+    <footer>
+      <a href="./index.html">← Home</a> · <a href="./clients.html">Client setup →</a>
+    </footer>
+  </main>
+</body>
+</html>

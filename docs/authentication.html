@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Authentication | Minehut MCP</title>
+  <link rel="stylesheet" href="./assets/style.css">
+</head>
+<body>
+  <aside class="sidebar">
+    <a class="logo" href="./index.html"><span>⛏️</span> Minehut MCP</a>
+    <div class="tagline">AI control for your Minehut server</div>
+    <nav>
+      <a href="./index.html">Home</a>
+      <a href="./installation.html">Installation</a>
+      <a href="./clients.html">Client setup</a>
+      <a href="./tools.html">Tools</a>
+      <a href="./authentication.html" class="active">Authentication</a>
+      <a href="./safety.html">Safety</a>
+      <a href="./faq.html">FAQ</a>
+    </nav>
+    <div class="ext">
+      <a href="https://github.com/Tobralla/minehut-mcp">GitHub repository ↗</a>
+    </div>
+  </aside>
+
+  <main class="main">
+    <h1>Authentication</h1>
+
+    <h2>The recommended flow</h2>
+    <p>The Minehut dashboard sits behind Cloudflare, and its session system changes often. Rather
+    than fighting the API directly, the server logs in through a real browser and captures the
+    session for the fast API layer:</p>
+    <ol>
+      <li>Ask your AI to call <code>browser_login_panel</code> with your Minehut email and password.</li>
+      <li>A browser opens the dashboard and fills the login form automatically.</li>
+      <li>A Cloudflare challenge or 2FA prompt may appear. Call <code>browser_wait_manual</code> so you can finish it by hand.</li>
+      <li>The session token is captured and stored in <code>~/.minehut-mcp/session.json</code> with file permissions 600.</li>
+      <li>All <code>minehut_*</code> API tools become active. The browser stays available for anything the API does not cover.</li>
+    </ol>
+
+    <div class="callout">
+      <strong>Visible window first.</strong> Set <code>MINEHUT_HEADLESS=0</code> in the client config
+      for the first login. Cloudflare challenges are easier for a human to solve in a visible window.
+    </div>
+
+    <h2>Session storage</h2>
+    <table>
+      <tr>
+        <th>Where</th>
+        <th>What</th>
+      </tr>
+      <tr>
+        <td><code>~/.minehut-mcp/session.json</code></td>
+        <td>The captured token and session id, created with permissions 600 so only your user can read it.</td>
+      </tr>
+      <tr>
+        <td><code>~/.minehut-mcp/browser-profile</code></td>
+        <td>The persistent browser profile with the dashboard cookies. This is what keeps the browser logged in between runs.</td>
+      </tr>
+      <tr>
+        <td><code>~/.minehut-mcp/shot-*.png</code></td>
+        <td>Screenshots taken with <code>browser_screenshot</code>.</td>
+      </tr>
+    </table>
+
+    <h2>Authenticating without the browser</h2>
+    <p>The API layer also accepts a session set directly via environment variables:</p>
+    <pre><code>export MINEHUT_TOKEN="your-token"
+export MINEHUT_SESSION_ID="your-session-id"</code></pre>
+    <p>Tokens found in the browser's local storage (keys such as
+    <code>minehut_auth_token</code> and <code>minehut_session_id</code>) are picked up
+    automatically by <code>browser_wait_manual</code> and by the login flow.</p>
+
+    <h2>When the session expires</h2>
+    <p>Minehut sessions expire on login, logout or after long inactivity. A rejected session
+    returns a clear error from the API tools that tells the AI to re-run
+    <code>browser_login_panel</code>. The browser profile usually makes the next login a single
+    click, since Cloudflare already trusts the stored cookies.</p>
+
+    <div class="callout danger">
+      <strong>Treat the token like a password.</strong> Anyone with the file contents can control
+      your Minehut account. Do not paste credentials or tokens into public chats, logs or issues.
+    </div>
+
+    <footer>
+      <a href="./tools.html">← Tools</a> · <a href="./safety.html">Safety →</a>
+    </footer>
+  </main>
+</body>
+</html>

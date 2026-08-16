@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Minehut MCP | Home</title>
+  <link rel="stylesheet" href="./assets/style.css">
+</head>
+<body>
+  <aside class="sidebar">
+    <a class="logo" href="./index.html"><span>⛏️</span> Minehut MCP</a>
+    <div class="tagline">AI control for your Minehut server</div>
+    <nav>
+      <a href="./index.html" class="active">Home</a>
+      <a href="./installation.html">Installation</a>
+      <a href="./clients.html">Client setup</a>
+      <a href="./tools.html">Tools</a>
+      <a href="./authentication.html">Authentication</a>
+      <a href="./safety.html">Safety</a>
+      <a href="./faq.html">FAQ</a>
+    </nav>
+    <div class="ext">
+      <a href="https://github.com/Tobralla/minehut-mcp">GitHub repository ↗</a>
+    </div>
+  </aside>
+
+  <main class="main">
+    <div class="hero">
+      <div class="logo-big">⛏️</div>
+      <h1>Minehut MCP</h1>
+      <p>
+        A Model Context Protocol server that lets any AI agent fully manage your
+        <a href="https://minehut.com">Minehut</a> Minecraft server. Used by Claude Code,
+        Codex, opencode, Cursor, Hermes and every other MCP client.
+      </p>
+      <p>
+        <span class="badge">MCP server</span>
+        <span class="badge">Node.js 18+</span>
+        <span class="badge">Playwright</span>
+        <span class="badge">MIT</span>
+      </p>
+    </div>
+
+    <h2>Two layers, one install</h2>
+    <table>
+      <tr>
+        <th>Layer</th>
+        <th>Tools</th>
+        <th>What the AI can do</th>
+      </tr>
+      <tr>
+        <td><strong>🖥️ Browser automation</strong></td>
+        <td><code>browser_open</code>, <code>browser_click</code>, <code>browser_type</code>, <code>browser_press</code>, <code>browser_text</code>, <code>browser_screenshot</code>, <code>browser_evaluate</code>, <code>browser_login_panel</code>, <code>browser_wait_manual</code></td>
+        <td>Drive the real Minehut dashboard like a human. Handles Cloudflare, the login form and every UI feature: plugins, players, worlds, files, billing, skins. This is the do-everything layer.</td>
+      </tr>
+      <tr>
+        <td><strong>⚡ Minehut API</strong></td>
+        <td><code>minehut_servers</code>, <code>minehut_status</code>, <code>minehut_start</code>, <code>minehut_stop</code>, <code>minehut_restart</code>, <code>minehut_command</code>, <code>minehut_logs</code>, <code>minehut_upgrade_ram</code></td>
+        <td>Fast scriptable control. Start and stop servers, send console commands, read logs, check players.</td>
+      </tr>
+    </table>
+
+    <div class="grid2">
+      <div class="card">
+        <h3>🚀 Quick start</h3>
+        <p>Install globally, install Chromium, add it to your AI client, log in once.</p>
+        <p><a href="./installation.html">Installation guide →</a></p>
+      </div>
+      <div class="card">
+        <h3>🔌 Client setup</h3>
+        <p>Ready-to-paste configuration for Claude Code, Codex, opencode, Cursor and Hermes.</p>
+        <p><a href="./clients.html">Client setup →</a></p>
+      </div>
+      <div class="card">
+        <h3>🔑 First login</h3>
+        <p>One browser login captures the session automatically. Cloudflare and 2FA are handled.</p>
+        <p><a href="./authentication.html">Authentication →</a></p>
+      </div>
+      <div class="card">
+        <h3>🛠️ Full reference</h3>
+        <p>All 19 tools with inputs and behavior, grouped by layer.</p>
+        <p><a href="./tools.html">Tools reference →</a></p>
+      </div>
+    </div>
+
+    <div class="callout danger">
+      <strong>Read this first.</strong> Console commands run with operator privileges and the stored
+      session gives full control of your Minehut account. Review the
+      <a href="./safety.html">safety notes</a> before letting an AI drive your server.
+    </div>
+
+    <footer>
+      Minehut MCP is not affiliated with Minehut or Mojang. Licensed under MIT.
+    </footer>
+  </main>
+</body>
+</html>
