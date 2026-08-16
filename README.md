@@ -133,32 +133,6 @@ args = ["-y", "github:Tobralla/minehut-mcp"]
 env = { MINEHUT_EMAIL = "you@example.com", MINEHUT_PASSWORD = "your password" }
 ```
 
-## 💡 Example prompts
-
-```
-Start my survival server and tell me how many players are online
-```
-
-```
-Install a plugin on my server. Use the dashboard.
-```
-
-```
-Give Inxx 64 diamonds on my server
-```
-
-```
-Why did my server crash last night? Check the logs
-```
-
-```
-Change my server RAM to 4GB and restart it
-```
-
-```
-Find out what my server MOTD currently says
-```
-
 ## 🛠️ Full tool list
 
 | Tool | Description |
