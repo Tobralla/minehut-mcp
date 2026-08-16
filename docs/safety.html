@@ -3,67 +3,102 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Safety | Minehut MCP</title>
+  <meta name="description" content="Safety notes for Minehut MCP: what the AI can do, built-in limits and recommended practices.">
+  <title>Safety | Minehut MCP docs</title>
   <link rel="stylesheet" href="./assets/style.css">
 </head>
-<body>
-  <aside class="sidebar">
-    <a class="logo" href="./index.html"><span>⛏️</span> Minehut MCP</a>
-    <div class="tagline">AI control for your Minehut server</div>
-    <nav>
-      <a href="./index.html">Home</a>
-      <a href="./installation.html">Installation</a>
-      <a href="./clients.html">Client setup</a>
-      <a href="./tools.html">Tools</a>
-      <a href="./authentication.html">Authentication</a>
-      <a href="./safety.html" class="active">Safety</a>
-      <a href="./faq.html">FAQ</a>
+<body data-page="safety">
+
+  <header class="site-header">
+    <div class="site-header-inner">
+      <a class="brand" href="./index.html"><span class="brand-mark">M</span> Minehut MCP</a>
+      <span class="version">v1.0.0</span>
+      <div class="header-spacer"></div>
+      <a class="header-link" href="https://github.com/Tobralla/minehut-mcp">GitHub ↗</a>
+      <button class="theme-toggle" id="theme-toggle" type="button">Dark</button>
+    </div>
+  </header>
+
+  <div class="layout">
+    <nav class="sidebar" aria-label="Docs navigation">
+      <div class="side-group">
+        <div class="side-label">Getting started</div>
+        <a class="side-link" href="./index.html">Overview</a>
+        <a class="side-link" href="./installation.html">Installation</a>
+      </div>
+      <div class="side-group">
+        <div class="side-label">Configuration</div>
+        <a class="side-link" href="./clients.html">Client setup</a>
+        <a class="side-link" href="./authentication.html">Authentication</a>
+      </div>
+      <div class="side-group">
+        <div class="side-label">Reference</div>
+        <a class="side-link" href="./tools.html">Tools</a>
+      </div>
+      <div class="side-group">
+        <div class="side-label">Support</div>
+        <a class="side-link active" href="./safety.html">Safety</a>
+        <a class="side-link" href="./faq.html">FAQ</a>
+      </div>
     </nav>
-    <div class="ext">
-      <a href="https://github.com/Tobralla/minehut-mcp">GitHub repository ↗</a>
-    </div>
-  </aside>
 
-  <main class="main">
-    <h1>Safety</h1>
+    <main class="content">
+      <div class="breadcrumb"><a href="./index.html">Docs</a> / Safety</div>
+      <h1>Safety</h1>
+      <p class="lead">What the AI can do with your account, and the limits that are built in.</p>
 
-    <h2>What the AI can do</h2>
-    <p>The session stored by this server grants full control of your Minehut account. The AI can
-    start and stop servers, send console commands with operator privileges, change RAM, read logs
-    and click through the dashboard including billing and plugin settings.</p>
+      <h2 id="what-the-ai-can-do">What the AI can do <a class="anchor" href="#what-the-ai-can-do">#</a></h2>
+      <p>The session stored by this server grants full control of your Minehut account. The AI can
+      start and stop servers, send console commands with operator privileges, change RAM, read logs
+      and click through the dashboard including plugin and billing settings.</p>
 
-    <h2>Built-in limits</h2>
-    <ul>
-      <li>Destructive actions are not automated by default. There is no tool for server reset or account deletion.</li>
-      <li>Console commands only go through <code>minehut_command</code>, which the AI has to call explicitly with the exact command string.</li>
-      <li>The stored session file is created with permissions 600.</li>
-      <li>Login and close tools exist on purpose: you can shut the whole thing down with <code>browser_close</code>.</li>
-    </ul>
+      <h2 id="built-in-limits">Built-in limits <a class="anchor" href="#built-in-limits">#</a></h2>
+      <ul>
+        <li>Destructive actions are not automated by default. There is no tool for server reset or account deletion.</li>
+        <li>Console commands reach the server only through <code>minehut_command</code>, which the AI calls with the exact command string.</li>
+        <li>The session file is created with permissions 600.</li>
+        <li><code>browser_close</code> exists so the whole browser session can be shut down on demand.</li>
+      </ul>
 
-    <h2>Recommended practices</h2>
-    <ol>
-      <li>Review what you ask the AI to run. A misphrased command like <code>give @e diamond 100000*10000</code> is exactly as damaging as typing it yourself.</li>
-      <li>Run the server only on machines you trust. It stores real credentials in your home directory.</li>
-      <li>Rotate your Minehut password and re-login after any machine compromise.</li>
-      <li>Do not paste credentials, tokens or session files into support chats or issue trackers.</li>
-      <li>Turn off the MCP server when you are done for the day. Most clients allow per-project enable and disable.</li>
-    </ol>
+      <h2 id="recommended-practices">Recommended practices <a class="anchor" href="#recommended-practices">#</a></h2>
+      <ol>
+        <li>Review what you ask the AI to run. A misphrased command is exactly as damaging as typing it yourself.</li>
+        <li>Run the server only on machines you trust. It stores real credentials in your home directory.</li>
+        <li>Rotate your Minehut password and re-login after any machine compromise.</li>
+        <li>Do not paste credentials, tokens or session files into support chats or issue trackers.</li>
+        <li>Disable the MCP server when you are done for the day. Most clients allow per-project enable and disable.</li>
+      </ol>
 
-    <div class="callout danger">
-      <strong>Operator privileges.</strong> Every console command sent through
-      <code>minehut_command</code> runs as the server operator. There is no sandbox between the AI
-      and your server, by design. The AI is a capable assistant with write access, not a read-only
-      viewer.
-    </div>
+      <div class="callout danger">
+        <strong>Operator privileges.</strong> Every console command sent through
+        <code>minehut_command</code> runs as the server operator. There is no sandbox between the
+        AI and your server, by design.
+      </div>
 
-    <h2>Account-level precautions</h2>
-    <p>Consider a dedicated Minehut account with fewer privileges, or at least a strong unique
-    password, for any long-running automation setup. The server works with any account, so slotting
-    in a throwaway account costs nothing.</p>
+      <h2 id="account-precaution">Account-level precautions <a class="anchor" href="#account-precaution">#</a></h2>
+      <p>Consider a dedicated Minehut account with a strong unique password for any long-running
+      automation setup. The server works with any account, so slotting in a throwaway account costs
+      nothing.</p>
 
-    <footer>
-      <a href="./authentication.html">← Authentication</a> · <a href="./faq.html">FAQ →</a>
-    </footer>
-  </main>
+      <div class="doc-nav">
+        <a href="./tools.html"><span class="nav-label">Previous</span><span class="nav-title">← Tools</span></a>
+        <a class="next" href="./faq.html"><span class="nav-label">Next</span><span class="nav-title">FAQ →</span></a>
+      </div>
+    </main>
+
+    <nav class="toc" aria-label="On this page">
+      <div class="toc-label">On this page</div>
+      <a href="#what-the-ai-can-do">What the AI can do</a>
+      <a href="#built-in-limits">Built-in limits</a>
+      <a href="#recommended-practices">Recommended practices</a>
+      <a href="#account-precaution">Account precautions</a>
+    </nav>
+  </div>
+
+  <footer>
+    <p>MIT licensed. Not affiliated with Minehut or Mojang.</p>
+  </footer>
+
+  <script src="./assets/main.js"></script>
 </body>
 </html>
