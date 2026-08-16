@@ -180,6 +180,8 @@ h3 {
 }
 h2 .anchor, h3 .anchor { opacity: 0; margin-left: 6px; font-weight: 400; color: var(--text-faint); }
 h2:hover .anchor, h3:hover .anchor { opacity: 1; }
+.h2-logo { display: inline-flex; align-items: center; gap: 10px; }
+.h2-logo svg { width: 22px; height: 22px; fill: currentColor; flex-shrink: 0; }
 
 p { margin: 12px 0; }
 ul, ol { margin: 12px 0 12px 24px; }
